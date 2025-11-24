@@ -48,6 +48,9 @@ export const fetchStoresAPI = async (
   // const encryptedToken =
   //   "1bcc714b4ab876b3bbbeacb063d60111008c9647aeb8b3ceca6bf9298294736a9f09ee4d95f4fa8b3e2948e16a433fb29873ca188e0e21ef1996665ec3bf3015531ff833627df94729dbe0fdf816c638";
 
+  console.log("ENVIRONMENT URL:", environmentUrl);
+  console.log("ENVIRONMENT TOKEN:", environmentEncryptedToken);
+
   const response = await fetch(
     // `http://localhost:3000/api/stores?storesListType=${storesListType}`,
     `${environmentUrl}${storesListType}`,
