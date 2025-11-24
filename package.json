@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development"
+    "dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode production"
   },
   "author": "",
   "license": "ISC",

@@ -8,17 +8,25 @@ import { CircularProgress } from "@mui/material";
 const DistrictSelector = ({
   onChange,
   value,
+  context,
 }: BuilderPluginProps<string[]>) => {
   const [district, setDistrict] = useState(value?.length > 0 ? value : []);
   const [options, setOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const builderEnvironment = context?.user?.currentOrganization;
+
+  // console.log(
+  //   "DistrictSelector props:",
+  //   props?.context?.user?.currentOrganization
+  // );
 
   useEffect(() => {
     const loadDistricts = async () => {
       try {
         setLoading(true);
 
-        const districts = await fetchStoresAPI("districts");
+        const districts = await fetchStoresAPI("districts", builderEnvironment);
         setOptions(districts);
       } catch (err) {
         console.error("Error fetching districts:", err);

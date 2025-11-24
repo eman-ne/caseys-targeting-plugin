@@ -20,6 +20,11 @@ const MenuProps = {
 export type BuilderPluginProps<T> = {
   onChange: (value: T) => void;
   value: T;
+  context?: {
+    user?: {
+      currentOrganization?: string;
+    };
+  };
 };
 
 type MultiSelectDropdownProps = BuilderPluginProps<string[]> & {
@@ -29,16 +34,28 @@ type MultiSelectDropdownProps = BuilderPluginProps<string[]> & {
 };
 
 export const fetchStoresAPI = async (
-  storesListType: "divisions" | "regions" | "districts"
+  storesListType: "divisions" | "regions" | "districts",
+  builderEnvironment?: string
 ): Promise<string[]> => {
-  const token = "";
+  const environmentUrl =
+    builderEnvironment === "701cf9c2b6384dbc814645e6d7dc14ea"
+      ? "https://caseys.com/api/stores/storesListType="
+      : "https://dev.caseys.com/api/stores/storesListType=";
+  const environmentEncryptedToken =
+    builderEnvironment === "701cf9c2b6384dbc814645e6d7dc14ea"
+      ? "c6f8decb14728e894366511c7d14f9ee027d951b5a3bea0d63fcf89a676e949bcd9d097039a479892827cdc5df563a4cad8f9a6ac20d85a3db0f9803432bb8470ad954bbd71a3bb9fe98c57922aee653"
+      : "1bcc714b4ab876b3bbbeacb063d60111008c9647aeb8b3ceca6bf9298294736a9f09ee4d95f4fa8b3e2948e16a433fb29873ca188e0e21ef1996665ec3bf3015531ff833627df94729dbe0fdf816c638";
+  // const encryptedToken =
+  //   "1bcc714b4ab876b3bbbeacb063d60111008c9647aeb8b3ceca6bf9298294736a9f09ee4d95f4fa8b3e2948e16a433fb29873ca188e0e21ef1996665ec3bf3015531ff833627df94729dbe0fdf816c638";
 
   const response = await fetch(
-    `https://dev.caseys.com/api/stores?storesListType=${storesListType}`,
+    // `http://localhost:3000/api/stores?storesListType=${storesListType}`,
+    `${environmentUrl}${storesListType}`,
     {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${environmentEncryptedToken}`,
+        // Authorization: `Bearer ${encryptedToken}`,
         "Content-Type": "application/json",
       },
     }
@@ -52,13 +69,8 @@ export const fetchStoresAPI = async (
   return data?.data?.map((item: { name: string }) => item?.name).sort() || [];
 };
 
-const MultiSelectDropdown = ({
-  options,
-  onChange,
-  value,
-  currentValue,
-  setCurrentValue,
-}: MultiSelectDropdownProps) => {
+const MultiSelectDropdown = (props: MultiSelectDropdownProps) => {
+  const { options, onChange, value, currentValue, setCurrentValue } = props;
   const handleChange = (event: SelectChangeEvent<string[]>) => {
     const {
       target: { value },
