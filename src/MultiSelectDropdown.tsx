@@ -39,8 +39,8 @@ export const fetchStoresAPI = async (
 ): Promise<string[]> => {
   const environmentUrl =
     builderEnvironment === "701cf9c2b6384dbc814645e6d7dc14ea"
-      ? "https://caseys.com/api/stores/storesListType="
-      : "https://dev.caseys.com/api/stores/storesListType=";
+      ? "https://caseys.com/api/stores?storesListType="
+      : "https://dev.caseys.com/api/stores?storesListType=";
   const environmentEncryptedToken =
     builderEnvironment === "701cf9c2b6384dbc814645e6d7dc14ea"
       ? "c6f8decb14728e894366511c7d14f9ee027d951b5a3bea0d63fcf89a676e949bcd9d097039a479892827cdc5df563a4cad8f9a6ac20d85a3db0f9803432bb8470ad954bbd71a3bb9fe98c57922aee653"
