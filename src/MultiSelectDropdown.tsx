@@ -45,24 +45,14 @@ export const fetchStoresAPI = async (
     builderEnvironment === "701cf9c2b6384dbc814645e6d7dc14ea"
       ? "c6f8decb14728e894366511c7d14f9ee027d951b5a3bea0d63fcf89a676e949bcd9d097039a479892827cdc5df563a4cad8f9a6ac20d85a3db0f9803432bb8470ad954bbd71a3bb9fe98c57922aee653"
       : "1bcc714b4ab876b3bbbeacb063d60111008c9647aeb8b3ceca6bf9298294736a9f09ee4d95f4fa8b3e2948e16a433fb29873ca188e0e21ef1996665ec3bf3015531ff833627df94729dbe0fdf816c638";
-  // const encryptedToken =
-  //   "1bcc714b4ab876b3bbbeacb063d60111008c9647aeb8b3ceca6bf9298294736a9f09ee4d95f4fa8b3e2948e16a433fb29873ca188e0e21ef1996665ec3bf3015531ff833627df94729dbe0fdf816c638";
 
-  console.log("ENVIRONMENT URL:", environmentUrl);
-  console.log("ENVIRONMENT TOKEN:", environmentEncryptedToken);
-
-  const response = await fetch(
-    // `http://localhost:3000/api/stores?storesListType=${storesListType}`,
-    `${environmentUrl}${storesListType}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${environmentEncryptedToken}`,
-        // Authorization: `Bearer ${encryptedToken}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`${environmentUrl}${storesListType}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${environmentEncryptedToken}`,
+      "Content-Type": "application/json",
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);

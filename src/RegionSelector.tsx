@@ -5,17 +5,23 @@ import MultiSelectDropdown, {
 } from "./MultiSelectDropdown";
 import { CircularProgress } from "@mui/material";
 
-const RegionSelector = ({ onChange, value }: BuilderPluginProps<string[]>) => {
+const RegionSelector = ({
+  onChange,
+  value,
+  context,
+}: BuilderPluginProps<string[]>) => {
   const [region, setRegion] = useState(value?.length > 0 ? value : []);
   const [options, setOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const builderEnvironment = context?.user?.currentOrganization;
 
   useEffect(() => {
     const loadRegions = async () => {
       try {
         setLoading(true);
 
-        const regions = await fetchStoresAPI("regions");
+        const regions = await fetchStoresAPI("regions", builderEnvironment);
         setOptions(regions);
       } catch (err) {
         console.error("Error fetching regions:", err);

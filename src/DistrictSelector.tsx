@@ -16,11 +16,6 @@ const DistrictSelector = ({
 
   const builderEnvironment = context?.user?.currentOrganization;
 
-  // console.log(
-  //   "DistrictSelector props:",
-  //   props?.context?.user?.currentOrganization
-  // );
-
   useEffect(() => {
     const loadDistricts = async () => {
       try {

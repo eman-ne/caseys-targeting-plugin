@@ -8,17 +8,20 @@ import { CircularProgress } from "@mui/material";
 const DivisionSelector = ({
   onChange,
   value,
+  context,
 }: BuilderPluginProps<string[]>) => {
   const [division, setDivision] = useState(value?.length > 0 ? value : []);
   const [options, setOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const builderEnvironment = context?.user?.currentOrganization;
 
   useEffect(() => {
     const loadDivisions = async () => {
       try {
         setLoading(true);
 
-        const divisions = await fetchStoresAPI("divisions");
+        const divisions = await fetchStoresAPI("divisions", builderEnvironment);
         setOptions(divisions);
       } catch (err) {
         console.error("Error fetching divisions:", err);
