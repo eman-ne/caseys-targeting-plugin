@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import MultiSelectDropdown from "./MultiSelectDropdown";
 
 const US_STATES = [
-  "Arkansas",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Michigan",
-  "Minnesota",
-  "Missouri",
-  "Nebraska",
-  "North Dakota",
-  "Ohio",
-  "Oklahoma",
-  "South Dakota",
-  "Tennessee",
-  "Wisconsin",
+  "AR", // Arkansas
+  "IL", // Illinois
+  "IN", // Indiana
+  "IA", // Iowa
+  "KS", // Kansas
+  "KY", // Kentucky
+  "MI", // Michigan
+  "MN", // Minnesota
+  "MO", // Missouri
+  "NE", // Nebraska
+  "ND", // North Dakota
+  "OH", // Ohio
+  "OK", // Oklahoma
+  "SD", // South Dakota
+  "TN", // Tennessee
+  "WI", // Wisconsin
 ];
 
 const UsStateSelector = ({ onChange, value }: any) => {
