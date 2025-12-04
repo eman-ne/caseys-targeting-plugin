@@ -6,14 +6,9 @@ import DistrictSelector from "./DistrictSelector";
 import StoreNumberInput from "./StoreNumberInput";
 
 Builder.registerEditor({
-  name: "US State Selector Logs",
+  name: "US State Selector",
   component: UsStateSelector,
 });
-
-// Builder.registerEditor({
-//   name: "US State Selector",
-//   component: UsStateSelector,
-// });
 
 Builder.registerEditor({
   name: "Division Selector",
