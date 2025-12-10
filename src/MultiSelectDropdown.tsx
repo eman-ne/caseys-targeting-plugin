@@ -33,6 +33,8 @@ type MultiSelectDropdownProps = BuilderPluginProps<string[]> & {
   setCurrentValue: (value: string[]) => void;
 };
 
+const reshapeDistrictsData = () => {};
+
 export const fetchStoresAPI = async (
   storesListType: "divisions" | "regions" | "districts",
   builderEnvironment?: string
@@ -59,6 +61,22 @@ export const fetchStoresAPI = async (
   }
 
   const data = await response.json();
+
+  console.log("DATA", data);
+
+  const districtNames =
+    data?.data?.map((item: { name: string }) => item?.name).sort() || [];
+
+  const districtStoreNumbers =
+    data?.data?.flatMap(
+      (district: any) =>
+        district._links?.children?.map((child: { href: string }) =>
+          child.href.split("/").pop()
+        ) || []
+    ) || [];
+
+  console.log("STOR NUMBERS", districtStoreNumbers);
+
   return data?.data?.map((item: { name: string }) => item?.name).sort() || [];
 };
 

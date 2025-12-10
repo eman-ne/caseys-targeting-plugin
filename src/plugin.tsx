@@ -29,3 +29,8 @@ Builder.registerEditor({
   name: "Store Number Input",
   component: StoreNumberInput,
 });
+
+// Builder.registerEditor({
+//   name: "District Selector Testing",
+//   component: DistrictSelector,
+// });
